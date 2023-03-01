@@ -2,31 +2,22 @@
 <html>
 <body>
 
-<h1>DelayedRelay</h1>
-<h2>The setTimeout() and clearTimeout() Methods</h2>
+<h1>Redirect</h1>
 
-<p>Click "Stop" to prevent myGreeting() to execute. (You have 5 seconds)</p>
-
-<button onclick="myStopFunction()">Stop!</button>
+<button onclick="redirect()">Redirect</button>
 
 <h2 id="demo"></h2>
 
 <script>
-const myTimeout = setTimeout(redirect, 10000);
-
 function redirect() {
     const queryString = window.location.search;
     console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
     const orig = urlParams.get('org')
     console.log(orig);
-    var meep = decodeURIComponent((orig).replace(/\+/g, '%20'));
-    console.log(meep);
-    window.location.href = meep;
-}
-
-function myStopFunction() {
-  clearTimeout(myTimeout);
+    var originalUrl = decodeURIComponent((orig).replace(/\+/g, '%20'));
+    console.log(originalUrl);
+    window.location.href = originalUrl;
 }
 </script>
 
