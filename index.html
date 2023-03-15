@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<h1>Redirect</h1>
-
-<button onclick="redirect()">Redirect</button>
-
-<h2 id="demo"></h2>
-
-<script>
-function redirect() {
-    const queryString = window.location.search;
-    console.log(queryString);
-    const urlParams = new URLSearchParams(queryString);
-    const orig = urlParams.get('org')
-    console.log(orig);
-    var originalUrl = decodeURIComponent((orig).replace(/\+/g, '%20'));
-    console.log(originalUrl);
-    window.location.href = originalUrl;
-}
-</script>
-
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h1>Orignal URL: <span id="originalUrl">N/A</span></h1>
+    <button id="replaceButton" onclick="redirect()" hidden>Redirect to original URL</button>
+    <script>
+      const queryString = window.location.search;
+      console.log(queryString);
+      const urlParams = new URLSearchParams(queryString);
+      const orig = urlParams.get('org')
+      console.log(orig);
+      var originalUrl = decodeURIComponent((orig).replace(/\+/g, '%20'));
+      document.getElementById('originalUrl').innerHTML = originalUrl;
+      document.getElementById("replaceButton").hidden = false;
+      
+      function redirect() {
+        window.location.href = originalUrl;
+      }
+    </script>
+  </body>
 </html>
